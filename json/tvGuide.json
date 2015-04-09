@@ -1,0 +1,65 @@
+{
+    "channels": [
+        {
+            "tnt": {
+                "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "icon": "http://4.bp.blogspot.com/-ce5cmqwmrm8/Tw-Cuy9LelI/AAAAAAAAFPk/OaS6b0ADkp0/s1600/TNT_TV_logo.png"
+            },
+            "nbc": {
+                "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "icon": "http://www.troygramling.com/wp-content/uploads/2012/08/nbc-logo.png"
+            },
+            "fox": {
+                "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "icon": "http://www.plughitzlive.com/images/news/logos/fox.png"
+            }
+        }
+    ],
+    "shows": [
+        {
+            "name": "Mad Men",
+            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "contentRating": "PG",
+            "suitableAge": "14+",
+            "airsAt": [
+                {
+                    "tnt": "100 - 11:30 AM"
+                }
+            ],
+            "episode": {
+                "title": "burden of proof",
+                "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue dictum nisi ac pellentesque. "
+            }
+        },
+        {
+            "name": "new Sherlock",
+            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "contentRating": "PG",
+            "suitableAge": "14+",
+            "airsAt": [
+                {
+                    "showTime": "100 - 11:30 AM"
+                }
+            ],
+            "episode": {
+                "title": "The Night of the ..",
+                "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue dictum nisi ac pellentesque. "
+            }
+        },
+        {
+            "name": "The Simpsons",
+            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "contentRating": "PG",
+            "suitableAge": "14+",
+            "airsAt": [
+                {
+                    "showTime": "100 - 11:30 AM"
+                }
+            ],
+            "episode": {
+                "title": "When Flanders Failed",
+                "summary": " Homer makes a wish for Ned Flanders's new left-handed store to go out of business. The wish comes true and gets the Flanders family into financial troubles.."
+            }
+        }
+    ]
+}

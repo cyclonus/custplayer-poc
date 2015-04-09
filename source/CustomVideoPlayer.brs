@@ -2,6 +2,9 @@
 '************************************************************
 '** Application startup
 '************************************************************
+
+'http://www.brightsign.biz/documents/BrightSignObjectReferenceManualv2.pdf
+
 Sub main()     
     app = initApp()    
            
@@ -44,20 +47,61 @@ Function initApp()
    
     app.port = CreateObject("roMessagePort")
     app.player.SetMessagePort(app.port)
-    app.canvas.SetMessagePort(app.port)                
+    app.canvas.SetMessagePort(app.port)    
+    app.tvGuideData = loadTVGuideData()            
     return app
 End Function
 
+Function loadTVGuideData()
+    jsonAsString = ReadAsciiFile("pkg:/json/tvGuide.json")
+    tvGuideData = ParseJSON(jsonAsString)
+    return tvGuideData     
+End Function
+
 Sub paintScreen(app)
+
+    sysTime = CreateObject("roSystemTime")
+    print "sysTime= " +  type(sysTime)    
+    
+    'if type(sysTime)<>"Invalid" then
+     '  dt = sysTime.GetLocalDateTime()
+      ' print dt.AsDateString("short-month")
+      ' print " current time is " +  str(dt.GetHours()) + ":" + str(dt.GetMinutes())
+    'endif
     print "paint"
-    app.canvas.SetLayer(0, { 
-        Text: "Hello World!",
-        TextAttrs: { font: "large", color: "#a0a0a0" },
-        TargetRect: {x: 10, y: 10, w: 100, h: 50},
-        Color: "#a0000000", 
-        CompositionMode: "Source_Over",
-        TargetRect: {x: 350, y: 500, w: 598, h: 37} 
-       })
+    
+    items = []
+                      
+     items.Push({
+        url: "pkg:/images/light-5-transparent-gradient.png"
+        TargetRect: {x: 550, y: 100, w: 494, h: 300}
+        CompositionMode: "Source_Over" 
+     })  
+     
+     items.Push({ 
+        Text: "light-5-transparent-gradient.png"
+        TextAttrs: { font: "large", color: "#a0a0a0" }       
+         Color: "#a0000000" 
+         CompositionMode: "Source_Over"
+         TargetRect: {x: 550, y: 100, w: 494, h: 300}         
+     }) 
+     '-------------------------------------------------  
+     items.Push({
+        url: "pkg:/images/dark-transparent-horiz.png"
+        TargetRect: {x: 150, y: 160, w: 494, h: 300}
+        CompositionMode: "Source_Over" 
+     })    
+      
+     items.Push({ 
+        Text: "dark-transparent-horiz.png"
+        TextAttrs: { font: "large", color: "#a0a0a0" }       
+         Color: "#a0000000"
+         CompositionMode: "Source_Over"
+         TargetRect: {x: 150, y: 160, w: 494, h: 300}          
+     })                 
+   '-------------------------------------------------   
+   'app.canvas.SetLayer(0, { Color: "#00000000", CompositionMode: "Source_Over" })
+    app.canvas.SetLayer(1, items)
     app.canvas.Show()
 End Sub
 
