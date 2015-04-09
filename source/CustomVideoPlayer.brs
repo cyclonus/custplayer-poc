@@ -65,7 +65,9 @@ Sub prepareClip(app)
 
     app.player.SetLoop(false)
     app.player.SetPositionNotificationPeriod(5)
-    app.player.SetDestinationRect({x: 0, y: 0, w: 600, h: 300}) 'fullscreen
+    sizeRect = app.canvas.GetCanvasRect()
+    print "x=" + str(sizeRect.x) + ",y=" + str(sizeRect.y) + ",w=" + str(sizeRect.w) + ",h="+ str(sizeRect.h)
+    app.player.SetDestinationRect({x: sizeRect.x, y: sizeRect.y, w: sizeRect.w, h: sizeRect.h}) 'fullscreen
     
     contentList = []    
         contentList.Push({
