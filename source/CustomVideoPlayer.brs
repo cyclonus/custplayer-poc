@@ -52,13 +52,11 @@ Function initApp()
     return app
 End Function
 
-Function loadTVGuideData()
-    jsonAsString = ReadAsciiFile("pkg:/json/tvGuide.json")
-    tvGuideData = ParseJSON(jsonAsString)
-    return tvGuideData     
-End Function
+
 
 Sub paintScreen(app)
+'http://www.rexdot.com/wordpress/wp-content/plugins/perspective/perspective/images/bg/
+'http://forums.roku.com/viewtopic.php?p=466930&sid=cf7bdcb7ca7d0e4a83fd1d93e157aaba
 
     sysTime = CreateObject("roSystemTime")
     print "sysTime= " +  type(sysTime)    
@@ -74,32 +72,18 @@ Sub paintScreen(app)
                       
      items.Push({
         url: "pkg:/images/light-5-transparent-gradient.png"
-        TargetRect: {x: 550, y: 100, w: 494, h: 300}
+        TargetRect: {x: int((1280/3)*2), y: 0, w: int(1280/3), h: 720}
         CompositionMode: "Source_Over" 
      })  
      
      items.Push({ 
-        Text: "light-5-transparent-gradient.png"
-        TextAttrs: { font: "large", color: "#a0a0a0" }       
+         Text: "light-5-transparent-gradient.png"
+         TextAttrs: { font: "large", color: "#a0a0a0" }       
          Color: "#a0000000" 
          CompositionMode: "Source_Over"
-         TargetRect: {x: 550, y: 100, w: 494, h: 300}         
+         TargetRect: {x: int((1280/3)*2), y: 0, w: int(1280/3), h: 720}         
      }) 
-     '-------------------------------------------------  
-     items.Push({
-        url: "pkg:/images/dark-transparent-horiz.png"
-        TargetRect: {x: 150, y: 160, w: 494, h: 300}
-        CompositionMode: "Source_Over" 
-     })    
-      
-     items.Push({ 
-        Text: "dark-transparent-horiz.png"
-        TextAttrs: { font: "large", color: "#a0a0a0" }       
-         Color: "#a0000000"
-         CompositionMode: "Source_Over"
-         TargetRect: {x: 150, y: 160, w: 494, h: 300}          
-     })                 
-   '-------------------------------------------------   
+     
    'app.canvas.SetLayer(0, { Color: "#00000000", CompositionMode: "Source_Over" })
     app.canvas.SetLayer(1, items)
     app.canvas.Show()
@@ -109,8 +93,8 @@ Sub prepareClip(app)
 
     app.player.SetLoop(false)
     app.player.SetPositionNotificationPeriod(5)
-    sizeRect = app.canvas.GetCanvasRect()
-    print "x=" + str(sizeRect.x) + ",y=" + str(sizeRect.y) + ",w=" + str(sizeRect.w) + ",h="+ str(sizeRect.h)
+    sizeRect = GetScreenDimensions(app)
+    
     app.player.SetDestinationRect({x: sizeRect.x, y: sizeRect.y, w: sizeRect.w, h: sizeRect.h}) 'fullscreen
     
     contentList = []    
