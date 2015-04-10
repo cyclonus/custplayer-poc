@@ -10,22 +10,43 @@ Sub main()
            
     print "loading.."
           
-       paintScreen(app) 
+       'paintScreen(app) 
        prepareClip(app)
-                                       
+       
+       app.canvas.Show() 
+                                               
        while true
+                
+        handlePaintMenu(app)
+                             
         event = wait(0, app.port)
+                       
         if (event<> invalid)
+            print "events loop"
             if (event.isRemoteKeyPressed())
                 index = event.GetIndex()
                 print index
-                if (index = 4) OR (index = 2) 'Left or Up
+                
+                if (index = 4) 'Left 
+                    doShowMenu(app)                    
+                else if (index = 2) 'Up    
                     
-                else if (index = 5) OR (index = 3) 'Right or Down
+                else if (index = 5) 'Right
+                                        
+                else if (index = 3) 'Down
                                         
                 else if (index = 6) 'OK
-                   ExitWhile  
+                    doStopShowMenu(app) 
+                   'ExitWhile  
                 endif
+                
+                'if (index = 4) OR (index = 2) 'Left or Up
+                '    
+                'else if (index = 5) OR (index = 3) 'Right or Down
+                '                        
+                'else if (index = 6) 'OK
+                '   ExitWhile  
+                'endif
                            
             endif
         endif
@@ -33,25 +54,6 @@ Sub main()
            
     print "bye."
 End Sub
-
-Function initApp()
-   app = {}
-   app.showOverlayMenu = false
-   app.player = CreateObject("roVideoPlayer")  
-   app.canvas = createObject("roImageCanvas")
-   
-    if type(app.player)<>"roVideoPlayer" then
-        print "Unable to create videoplayer."
-        stop   ' stop exits to the debugger
-    endif    
-   
-    app.port = CreateObject("roMessagePort")
-    app.player.SetMessagePort(app.port)
-    app.canvas.SetMessagePort(app.port)    
-    app.tvGuideData = loadTVGuideData()            
-    return app
-End Function
-
 
 
 Sub paintScreen(app)
