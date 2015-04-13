@@ -21,6 +21,7 @@
             "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "contentRating": "PG",
             "suitableAge": "14+",
+            "url":"http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8",
             "airsAt": [
                 {
                     "tnt": "100 - 11:30 AM"
@@ -32,10 +33,11 @@
             }
         },
         {
-            "name": "new Sherlock",
+            "name": "Nasa tv",
             "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "contentRating": "PG",
             "suitableAge": "14+",
+            "url":"http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8",
             "airsAt": [
                 {
                     "showTime": "100 - 11:30 AM"
@@ -51,6 +53,23 @@
             "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "contentRating": "PG",
             "suitableAge": "14+",
+            "url":"http://srv6.zoeweb.tv:1935/z330-live/stream/playlist.m3u8",
+            "airsAt": [
+                {
+                    "showTime": "100 - 11:30 AM"
+                }
+            ],
+            "episode": {
+                "title": "When Flanders Failed",
+                "summary": " Homer makes a wish for Ned Flanders's new left-handed store to go out of business. The wish comes true and gets the Flanders family into financial troubles.."
+            }
+        },
+        {
+            "name": "Vevo playlist",
+            "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "contentRating": "PG",
+            "suitableAge": "14+",
+            "url":"http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/appleman.m3u8",
             "airsAt": [
                 {
                     "showTime": "100 - 11:30 AM"

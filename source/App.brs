@@ -1,7 +1,7 @@
 
 '  This library is intended to provide a set of fucntions to help particion the scree and  
 '
-Function LoadTVGuideData()
+Function GetTVGuideData()
     jsonAsString = ReadAsciiFile("pkg:/json/tvGuide.json")
     tvGuideData = ParseJSON(jsonAsString)
     return tvGuideData     
@@ -26,11 +26,11 @@ Function initApp()
     endif    
    
     app.port = CreateObject("roMessagePort")
-    app.player.SetMessagePort(app.port)
-    app.canvas.SetMessagePort(app.port)    
-    app.tvGuideData = LoadTVGuideData()  
+    app.canvas.SetMessagePort(app.port)  
+    app.player.SetMessagePort(app.port)            
     app.screenDimensions = GetScreenDimensions(app)
-    app.menuConfig = GetMenuConfig(app)          
+    app.menuConfig = GetMenuConfig(app)
+    app.tvGuideData = GetTVGuideData()          
     return app
 End Function
 
