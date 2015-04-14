@@ -7,58 +7,70 @@ Function GetMenuConfig(app)
     config.stat = "hidden"         
     
     config.selectorImageURL = "pkg:/images/small-roundrect.png"    
-    
+    config.selectedShowID = invalid
     return config
 End Function
 
 Function doShowMenu(app)
-    print "do showins"
     app.menuConfig.stat = "visible"
     paintMenu(app)
 End Function
 
-Function doHideMenu(app)
-    print "stop showing"
+Function doHideMenu(app)    
     app.menuConfig.stat = "hidden"
     paintMenu(app)
 End Function
 
-Function GetContentItems(app, menuRect, items)
-   data = app.tvGuideData    
-   print " number of shows " +  str(data.shows.Count())
+Function GetMenuItems(app, menuRect, items)
+
+   data = app.tvGuideData       
    
-   menuSectionSize = int(app.screenDimensions.w / 8)  
+   menuSectionH = int(app.screenDimensions.w / 8)  
    
    x = menuRect.x
-   y = menuRect.y
-   w = int(menuRect.w / 2) 
-   h = menuSectionSize 
+   y = menuRect.y + 100
+   w1 = int(menuRect.w / 4)   
+   h = menuSectionH 
+   w2 = int(menuRect.w - w1)                   
+   ' should use a fixed number here to draw the whole screen instead of the data returned by the api
+            
+   for each showID in data.shows   
+                        
+       'print "single show type: " + type(showID) + " value "+showID   
+       'print data.shows[showID]
+       o = data.shows[showID]        
+       channelSectionRect = {x: x, y: y, w: 100, h: 100}
+       
+       for each channelID in o.airsAt                 
+         channelIconUrl = data.channels[channelID].icon 
+         items.Push({
+            url: channelIconUrl
+            TargetRect: channelSectionRect
+            CompositionMode: "Source_Over" 
+         })                                                               
+       end for
+       
+       tvShowSectionRect = {x: x + 150, y: y - 50, w: 200, h: 200}
+       ' tv show section                                   
+       items.Push({ 
+              Text: o.name
+              TextAttrs: { font: "Medium", color: "#a0a0a0" }       
+              Color: "#a0000000" 
+              CompositionMode: "Source_Over"
+              TargetRect: tvShowSectionRect   
+              HAlign:"HCenter" 
+              VAlign:"VCenter"
+              Direction:"LeftToRight"                  
+        })        
+           
+        y = y + menuSectionH 
+        
+       if(app.menuConfig.selectedShowID = invalid)
+          app.menuConfig.selectedShowID = showID
+       end if 
+                                             
+   end for      
                      
-   For each show in data.shows ' should use fixed number here to draw the screen instead of data returned by the api
-   
-           channelSectionRect = {x: x, y: y, w: w, h: h}           
-                                                      
-           ' channel section                                   
-           items.Push({ 
-                  Text: show.name
-                  TextAttrs: { font: "Medium", color: "#a0a0a0" }       
-                  Color: "#a0000000" 
-                  CompositionMode: "Source_Over"
-                  TargetRect: channelSectionRect        
-            })            
-            
-           tvShowSectionRect = {x: x + int(w/2), y: y, w: w, h: h}    
-           ' tv show section                                   
-           items.Push({ 
-                  Text: show.name
-                  TextAttrs: { font: "Medium", color: "#a0a0a0" }       
-                  Color: "#a0000000" 
-                  CompositionMode: "Source_Over"
-                  TargetRect: tvShowSectionRect        
-            })    
-            
-            y = y + menuSectionSize               
-   end for
    return items 
 End Function
 
@@ -78,17 +90,16 @@ Function paintMenu(app)
             CompositionMode: "Source" 
           })  
                
-          items = GetContentItems(app,menuRect,items)     
+          items = GetMenuItems(app, menuRect, items)     
                                                                                           
           app.canvas.AllowUpdates(false)          
           app.canvas.ClearLayer(1)  
           app.canvas.SetLayer(0, { Color: "#00000000", CompositionMode: "Source" })
-          app.canvas.SetLayer(1, items)                                      
-                                                
+          app.canvas.SetLayer(1, items)                                                                                      
           app.canvas.AllowUpdates(true)
           app.canvas.Show()         
    else
-          print "clear all"
+          'print "clear all"
           app.canvas.AllowUpdates(false)
           app.canvas.ClearLayer(1)  
           app.canvas.SetLayer(0, { Color: "#00000000", CompositionMode: "Source" })
@@ -97,4 +108,9 @@ Function paintMenu(app)
                               
    end if   
    
+End Function
+
+
+Function GetSelectedTitle()
+  return -1
 End Function

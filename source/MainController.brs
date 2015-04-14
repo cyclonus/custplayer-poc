@@ -18,7 +18,7 @@ function main()
                                                            
         event = wait(0, app.port)                        
         if (event<> invalid)
-            print "events loop"
+            'print "events loop"
             if (event.isRemoteKeyPressed())
                 index = event.GetIndex()
                 print index

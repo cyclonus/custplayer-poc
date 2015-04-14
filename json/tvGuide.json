@@ -1,5 +1,5 @@
 {
-    "channels": [
+    "channels": 
         {
             "tnt": {
                 "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -12,73 +12,77 @@
             "fox": {
                 "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "icon": "http://www.plughitzlive.com/images/news/logos/fox.png"
+            },
+            "showTime": {
+                "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "icon": "http://icons.iconarchive.com/icons/wackypixel/tv-buttons-2/256/Showtime-icon.png"
             }
         }
-    ],
-    "shows": [
-        {
+    ,
+    "shows": {
+        "0001":{            
             "name": "Mad Men",
             "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "contentRating": "PG",
             "suitableAge": "14+",
             "url":"http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8",
-            "airsAt": [
+            "airsAt": 
                 {
                     "tnt": "100 - 11:30 AM"
                 }
-            ],
+            ,
             "episode": {
                 "title": "burden of proof",
                 "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue dictum nisi ac pellentesque. "
             }
         },
-        {
+        "0002":{
             "name": "Nasa tv",
             "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "contentRating": "PG",
             "suitableAge": "14+",
             "url":"http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8",
-            "airsAt": [
+            "airsAt": 
                 {
-                    "showTime": "100 - 11:30 AM"
+                    "fox": "100 - 11:30 AM"
                 }
-            ],
+            ,
             "episode": {
                 "title": "The Night of the ..",
                 "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue dictum nisi ac pellentesque. "
             }
         },
-        {
+        "0003":{
             "name": "The Simpsons",
             "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "contentRating": "PG",
             "suitableAge": "14+",
             "url":"http://srv6.zoeweb.tv:1935/z330-live/stream/playlist.m3u8",
-            "airsAt": [
+            "airsAt": 
                 {
                     "showTime": "100 - 11:30 AM"
                 }
-            ],
+            ,
             "episode": {
                 "title": "When Flanders Failed",
                 "summary": " Homer makes a wish for Ned Flanders's new left-handed store to go out of business. The wish comes true and gets the Flanders family into financial troubles.."
             }
         },
-        {
+        "0004":{
             "name": "Vevo playlist",
             "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "contentRating": "PG",
             "suitableAge": "14+",
             "url":"http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/appleman.m3u8",
-            "airsAt": [
+            "airsAt": 
                 {
-                    "showTime": "100 - 11:30 AM"
+                    "nbc": "100 - 11:30 AM"
                 }
-            ],
+            ,
             "episode": {
                 "title": "When Flanders Failed",
                 "summary": " Homer makes a wish for Ned Flanders's new left-handed store to go out of business. The wish comes true and gets the Flanders family into financial troubles.."
             }
         }
-    ]
+    }
 }
