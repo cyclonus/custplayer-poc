@@ -3,19 +3,19 @@
         {
             "tnt": {
                 "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                "icon": "http://4.bp.blogspot.com/-ce5cmqwmrm8/Tw-Cuy9LelI/AAAAAAAAFPk/OaS6b0ADkp0/s1600/TNT_TV_logo.png"
+                "icon": "pkg:/images/TNT_TV_logo.png"
             },
             "nbc": {
                 "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                "icon": "http://www.troygramling.com/wp-content/uploads/2012/08/nbc-logo.png"
+                "icon": "pkg:/images/nbc-logo.png"
             },
             "fox": {
                 "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                "icon": "http://www.plughitzlive.com/images/news/logos/fox.png"
+                "icon": "pkg:/images/fox.png"
             },
             "showTime": {
                 "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                "icon": "http://icons.iconarchive.com/icons/wackypixel/tv-buttons-2/256/Showtime-icon.png"
+                "icon": "pkg:/images/Showtime-icon.png"
             }
         }
     ,

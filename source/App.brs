@@ -1,6 +1,4 @@
 
-'  This library is intended to provide a set of fucntions to help particion the scree and  
-'
 Function GetTVGuideData()
     jsonAsString = ReadAsciiFile("pkg:/json/tvGuide.json")
     tvGuideData = ParseJSON(jsonAsString)
@@ -10,7 +8,7 @@ End Function
 Function GetScreenDimensions(app)
    ' inches 
    screenDimensions = app.canvas.GetCanvasRect()
-   print "x=" + str(screenDimensions.x) + ",y=" + str(screenDimensions.y) + ",w=" + str(screenDimensions.w) + ",h="+ str(screenDimensions.h)
+   ' print "x=" + str(screenDimensions.x) + ",y=" + str(screenDimensions.y) + ",w=" + str(screenDimensions.w) + ",h="+ str(screenDimensions.h)
    return screenDimensions
 End Function
 
@@ -22,7 +20,7 @@ Function initApp()
    
     if type(app.player)<>"roVideoPlayer" then
         print "Unable to create videoplayer."
-        stop   ' stop exits to the debugger
+        stop  ' stop exits to the debugger
     endif    
    
     app.port = CreateObject("roMessagePort")
