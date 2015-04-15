@@ -6,13 +6,14 @@ Function GetMenuConfig(app)
     config.screenPartitions  = 4        
     config.stat = "hidden"             
     config.focusRectImageURL = "pkg:/images/small-roundrect.png"        
-    config.focusedIndex = 1
+    config.focusedIndex  = 1 
+    config.focusedColumn = 1   ' here we can control if we have selected a channel or a TV-Show  
     return config
 End Function
 
 Function doShowMenu(app)
     app.menuConfig.stat = "visible"
-    app.menuConfig.focusedIndex = 1 
+    'app.menuConfig.focusedIndex = 1 
     paintMenu(app)
 End Function
 
@@ -22,12 +23,13 @@ Function doHideMenu(app)
 End Function
 
 Function doFocusMenuItem(app)
-   '
-   paintMenu(app)
+   focusedIndex  = app.menuConfig.focusedIndex
+   focusedColumn = app.menuConfig.focusedColumn 
+   print "focusedIndex= " + str(focusedIndex) + " focusedColumn= " + str(focusedColumn)  
+   'paintMenu(app)
 End Function
 
-
-Function DrawFocusRectIfSelected(rect, items)   
+Function DrawFocusRect(app, rect, items)   
       items.Push({
             url: app.menuConfig.focusRectImageURL
             TargetRect: rect
@@ -48,40 +50,53 @@ Function GetMenuItems(app, menuRect, items)
    h = menuSectionH 
    w2 = int(menuRect.w - w1)                   
    ' should use a fixed number here to draw the whole screen instead of the data returned by the api
-   focusedIndex = app.menuConfig.focusedIndex
-   indx = 0         
+   focusedIndex  = app.menuConfig.focusedIndex
+   focusedColumn = app.menuConfig.focusedColumn
+   
+   count = 1         
    for each showID in data.shows   
                                                                                         
        'Draw channel section        
        tvShow = data.shows[showID]        
        channelSectionRect = {x: x, y: y, w: 100, h: 100}
-       
+      
+     ' This make this code real slow to paint  try using SetRequireAllImagesToDraw
        for each channelID in tvShow.airsAt                 
          channelIconUrl = data.channels[channelID].icon 
          items.Push({
             url: channelIconUrl
             TargetRect: channelSectionRect
-            CompositionMode: "Source" 
-         })  
-                                                                                
+            CompositionMode: "Source_Over" 
+         })                                                                                  
        end for
-                     
+                                        
            'Draw tv show section              
            tvShowSectionRect = {x: x + 150, y: y - 50, w: 300, h: 200}                                          
            items.Push({ 
                   Text: tvShow.name
                   TextAttrs: { font: "Medium", color: "#a0a0a0" }       
                   Color: "#a0000000" 
-                  CompositionMode: "Source_Over"
+                  CompositionMode: "Source"
                   TargetRect: tvShowSectionRect   
                   HAlign:"HCenter" 
                   VAlign:"VCenter"
                   Direction:"LeftToRight"                  
             })        
+        
+       ' do we need a flag to control selection ???
          
+         ' if this condition is met, then we have selected a channel 
+         if(count = focusedIndex and focusedColumn = 1) 
+          items = DrawFocusRect(app, channelSectionRect, items)
+         end if   
+        
+         'if this condition is met, then we have selected a show
+         if(count = focusedIndex and focusedColumn = 2) 
+          items = DrawFocusRect(app, tvShowSectionRect, items)
+         end if           
            
         y = y + menuSectionH 
-        indx = indx + 1                                                    
+        count = count + 1                                                    
    end for      
                      
    return items 
@@ -108,7 +123,7 @@ Sub paintMenu(app)
                                                                                           
           app.canvas.AllowUpdates(false)          
           app.canvas.Clear()  
-          app.canvas.SetLayer(0, { Color: "#00000000", CompositionMode: "Source" })
+          'app.canvas.SetLayer(0, { Color: "#00000000", CompositionMode: "Source" })
           app.canvas.SetLayer(1, items)                                                                                      
           app.canvas.AllowUpdates(true)
           app.canvas.Show()         

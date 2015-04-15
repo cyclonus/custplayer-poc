@@ -23,6 +23,7 @@ Function initApp()
         stop  ' stop exits to the debugger
     endif    
    
+    app.canvas.SetRequireAllImagesToDraw(false)
     app.port = CreateObject("roMessagePort")
     app.canvas.SetMessagePort(app.port)  
     app.player.SetMessagePort(app.port)            

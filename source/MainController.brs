@@ -12,26 +12,43 @@ Function onFocusItem(app)
 End function
 
 Function onLeftKey(app)
-    if(app.menuConfig.stat = "hidden") 
-       doShowMenu(app)          
-    endif
+    if(app.menuConfig.stat = "visible")            
+      if(app.menuConfig.focusedColumn > 1)
+         app.menuConfig.focusedColumn = app.menuConfig.focusedColumn - 1
+         paintMenu(app)         
+       end if 
+    else doShowMenu(app)                                      
+    endif    
 end Function
 
 Function onRightKey(app)
-    if(app.menuConfig.stat = "hidden") 
-       doShowMenu(app)          
+    if(app.menuConfig.stat = "visible") 
+       if(app.menuConfig.focusedColumn < 2)
+         app.menuConfig.focusedColumn = app.menuConfig.focusedColumn + 1
+         paintMenu(app)
+       end if                    
     endif
 end Function
 
 Function onUpKey(app)
    if(app.menuConfig.stat = "visible")
-     
+      if(app.menuConfig.focusedIndex > 0)
+         app.menuConfig.focusedIndex = app.menuConfig.focusedIndex - 1
+         paintMenu(app) 
+      end if
      return 1
    endif
    return -1 
 End Function
 
 Function onDownKey(app)
+   print " shows count = " + str(app.tvGuideData.shows.Count())
+   if(app.menuConfig.stat = "visible")
+      if(app.menuConfig.focusedIndex < app.tvGuideData.shows.Count())
+         app.menuConfig.focusedIndex = app.menuConfig.focusedIndex + 1
+         paintMenu(app)
+      end if 
+   end if
    return -1 
 End Function
  
