@@ -25,8 +25,10 @@ End Function
 Function doFocusMenuItem(app)
    focusedIndex  = app.menuConfig.focusedIndex
    focusedColumn = app.menuConfig.focusedColumn 
-   print "focusedIndex= " + str(focusedIndex) + " focusedColumn= " + str(focusedColumn)  
-   'paintMenu(app)
+   'print "focusedIndex= " + str(focusedIndex) + " focusedColumn= " + str(focusedColumn)  
+   
+   playClip(app)
+   
 End Function
 
 Function DrawFocusRect(app, rect, items)   
@@ -37,6 +39,21 @@ Function DrawFocusRect(app, rect, items)
          })          
    return items
 End Function
+
+Function GetSelectedTVShow(app)
+    if(app.menuConfig.stat = "visible" and app.menuConfig.focusedColumn = 2)
+        data = app.tvGuideData
+        count = 1
+        for each showID in data.shows
+          if(count = app.menuConfig.focusedIndex)
+             tvShow = data.shows[showID]
+             return tvShow    
+          end if        
+          count = count + 1          
+        end for
+    end if    
+    return invalid
+end Function
 
 Function GetMenuItems(app, menuRect, items)
 

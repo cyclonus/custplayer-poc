@@ -22,11 +22,16 @@ Function initApp()
         print "Unable to create videoplayer."
         stop  ' stop exits to the debugger
     endif    
-   
-    app.canvas.SetRequireAllImagesToDraw(false)
+       
     app.port = CreateObject("roMessagePort")
-    app.canvas.SetMessagePort(app.port)  
-    app.player.SetMessagePort(app.port)            
+    
+    app.canvas.SetMessagePort(app.port)   
+    app.canvas.SetRequireAllImagesToDraw(false)
+      
+    app.player.SetMessagePort(app.port)        
+    app.player.SetLoop(false)
+    app.player.SetPositionNotificationPeriod(5)
+               
     app.screenDimensions = GetScreenDimensions(app)
     app.menuConfig = GetMenuConfig(app)
     app.tvGuideData = GetTVGuideData()          

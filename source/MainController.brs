@@ -6,7 +6,7 @@
 'http://www.brightsign.biz/documents/BrightSignObjectReferenceManualv2.pdf
 
 Function onFocusItem(app)
-   if(app.menuConfig.stat = "visible")
+   if(app.menuConfig.stat = "visible")     
        doFocusMenuItem(app)
    end if
 End function
@@ -32,7 +32,7 @@ end Function
 
 Function onUpKey(app)
    if(app.menuConfig.stat = "visible")
-      if(app.menuConfig.focusedIndex > 0)
+      if(app.menuConfig.focusedIndex > 1)
          app.menuConfig.focusedIndex = app.menuConfig.focusedIndex - 1
          paintMenu(app) 
       end if
@@ -65,8 +65,7 @@ function main()
     app = initApp()    
            
     print "loading.."
-                
-       prepareClip(app)             
+                               
        app.canvas.Show() 
                                                
        while true
@@ -76,7 +75,7 @@ function main()
             'print "events loop"
             if (event.isRemoteKeyPressed())
                 index = event.GetIndex()
-                print index               
+                'print index               
                 if (index = 4) 'Left, pulls out the menu                    
                     onLeftKey(app)                                                 
                 else if (index = 2) 'Up    
